@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' as vector_math_64;
+import 'package:vector_math/vector_math_64.dart' ;
 
 class Zoomarj extends StatefulWidget {
   Zoomarj({Key? key, required this.input_widget, required this.pinchzoom, required this.height, required this.width})
@@ -139,8 +139,8 @@ class _ZoomarjState extends State<Zoomarj> with TickerProviderStateMixin{
                   //     vector_math_64.Vector3(controller.scale.value,
                   //         controller.scale.value, controller.scale.value)),
 
-                  transform: vector_math_64.Matrix4.diagonal3(
-                      vector_math_64.Vector3(scale.clamp(1.0, 5.0),
+                  transform: Matrix4.diagonal3(
+                      Vector3(scale.clamp(1.0, 5.0),
                           scale.clamp(1.0, 5.0), scale.clamp(1.0, 5.0))),
                   child: widget.input_widget)),
     );

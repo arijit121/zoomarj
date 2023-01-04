@@ -4,12 +4,24 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+import zoom_arj dependency
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+import 'package:zoom_arj/zoom_arj.dart';
 
+Example:
+
+Zoomarj(
+    input_widget: Container(
+    width: 120,
+    height: 20,
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.all(
+    Radius.circular(12.0),
+    ),
+    ),
+    child: Text('Running on:')),
+    pinchzoom: 0, /// for pinchzoom give input 1
+    height: MediaQuery.of(context).size.height-80,
+    width: MediaQuery.of(context).size.width,
+)

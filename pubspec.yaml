@@ -1,7 +1,7 @@
 name: zoom_arj
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/arijit121/zoomarj.git
 
 environment:
   sdk: '>=2.18.6 <3.0.0'

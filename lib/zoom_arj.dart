@@ -16,7 +16,7 @@ class Zoomarj extends StatefulWidget {
 
 class _ZoomarjState extends State<Zoomarj> with TickerProviderStateMixin{
   TransformationController _transformationController =
-      TransformationController();
+  TransformationController();
   Animation<Matrix4> ?_animationReset;
   AnimationController ?_controllerReset;
   int pointer = 0;
@@ -87,62 +87,62 @@ class _ZoomarjState extends State<Zoomarj> with TickerProviderStateMixin{
       width: widget.width,
       child: !(kIsWeb)
           ? InteractiveViewer(
-              clipBehavior: Clip.hardEdge,
-              transformationController: _transformationController,
-              boundaryMargin: EdgeInsets.all(20.0),
-              minScale: 0.1,
-              maxScale: 1.6,
-              onInteractionStart: _onInteractionStart,
-              onInteractionEnd: _onInteractionEnd,
-              child: widget.input_widget)
+          clipBehavior: Clip.hardEdge,
+          transformationController: _transformationController,
+          boundaryMargin: EdgeInsets.all(20.0),
+          minScale: 0.1,
+          maxScale: 1.6,
+          onInteractionStart: _onInteractionStart,
+          onInteractionEnd: _onInteractionEnd,
+          child: widget.input_widget)
           : GestureDetector(
-              onScaleEnd: (details) {
-                print("onScaleEnd::>> " + details.toString());
+          onScaleEnd: (details) {
+            print("onScaleEnd::>> " + details.toString());
 
-                if (widget.pinchzoom == 1) {
-                  setState(() {
-                    pointer = details.pointerCount;
-                    scale = 0.0;
-                  });
-                } else {
-                  setState(() {
-                    pointer = details.pointerCount;
-                    scale = scale;
-                  });
-                }
-              },
-              onScaleStart: (details) {
-                setState(() {
-                  pointer = details.pointerCount;
-                  print("onScaleStart::>> " + pointer.toString());
-                  scale = scale;
-                });
-              },
-              onScaleUpdate: (details) {
-                print("onScaleUpdate::>> " + details.toString());
+            if (widget.pinchzoom == 1) {
+              setState(() {
+                pointer = details.pointerCount;
+                scale = 0.0;
+              });
+            } else {
+              setState(() {
+                pointer = details.pointerCount;
+                scale = scale;
+              });
+            }
+          },
+          onScaleStart: (details) {
+            setState(() {
+              pointer = details.pointerCount;
+              print("onScaleStart::>> " + pointer.toString());
+              scale = scale;
+            });
+          },
+          onScaleUpdate: (details) {
+            print("onScaleUpdate::>> " + details.toString());
 
-                setState(() {
-                  pointer = details.pointerCount;
-                  if (pointer == 2) {
-                    scale = details.scale.clamp(1.0, 5.0);
-                  }
-                });
+            setState(() {
+              pointer = details.pointerCount;
+              if (pointer == 2) {
+                scale = details.scale.clamp(1.0, 5.0);
+              }
+            });
 
-                // controller.scale.value = details.scale.clamp(1.0, 5.0);
-                // controller.scale.value =
-                //     controller.previousScale.value * (details.scale * .35);
-              },
-              child: Transform(
-                  alignment: FractionalOffset.center,
+            // controller.scale.value = details.scale.clamp(1.0, 5.0);
+            // controller.scale.value =
+            //     controller.previousScale.value * (details.scale * .35);
+          },
+          child: Transform(
+              alignment: FractionalOffset.center,
 
-                  // transform: vector_math_64.Matrix4.diagonal3(
-                  //     vector_math_64.Vector3(controller.scale.value,
-                  //         controller.scale.value, controller.scale.value)),
+              // transform: vector_math_64.Matrix4.diagonal3(
+              //     vector_math_64.Vector3(controller.scale.value,
+              //         controller.scale.value, controller.scale.value)),
 
-                  transform: Matrix4.diagonal3(
-                      Vector3(scale.clamp(1.0, 5.0),
-                          scale.clamp(1.0, 5.0), scale.clamp(1.0, 5.0))),
-                  child: widget.input_widget)),
+              transform: Matrix4.diagonal3(
+                  Vector3(scale.clamp(1.0, 5.0),
+                      scale.clamp(1.0, 5.0), scale.clamp(1.0, 5.0))),
+              child: widget.input_widget)),
     );
   }
 }
